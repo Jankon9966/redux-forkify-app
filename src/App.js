@@ -1,8 +1,9 @@
+import React from "react";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchRecipes } from "./redux/slices/recipes-slice";
-import { useEffect } from "react";
+import { fetchRecipe, fetchRecipes } from "./redux/slices/recipes-slice";
 import RecipeList from "./components/RecipeList";
+import Recipe from "./components/Recipe";
 
 function App() {
   const recipes = useSelector((state) => state.recipe.recipes);
@@ -10,16 +11,21 @@ function App() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchRecipes());
-  }, []);
-
   if (loading) {
     return <h2>Loading recipes...</h2>;
   }
 
+  const showRecipes = () => {
+    dispatch(fetchRecipes());
+  };
+
+  const showRecipeHandler = () => {
+    dispatch(fetchRecipe());
+  };
+
   return (
     <div className="App">
+      <button onClick={showRecipes}>GET RECIPES</button>
       {recipes.map((item) => {
         return (
           <RecipeList
@@ -30,6 +36,10 @@ function App() {
           />
         );
       })}
+      <div>
+        <button onClick={showRecipeHandler}>GET RECIPE</button>
+        <Recipe /> 
+      </div>
     </div>
   );
 }
