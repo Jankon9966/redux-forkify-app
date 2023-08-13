@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 const Recipe = () => {
 
   const recipe = useSelector((state) => state.recipe.recipe);
-    console.log(recipe);
 
   return (
     <div>

@@ -2,8 +2,8 @@ import React from "react";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchRecipe, fetchRecipes } from "./redux/slices/recipes-slice";
-import RecipeList from "./components/RecipeList";
-import Recipe from "./components/Recipe";
+import RecipeList from "./components/Recipe/RecipeList";
+import Recipe from "./components/Recipe/Recipe";
 
 function App() {
   const recipes = useSelector((state) => state.recipe.recipes);
